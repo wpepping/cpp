@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 20:14:04 by wpepping          #+#    #+#             */
-/*   Updated: 2024/11/10 18:06:49 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:53:48 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void err_handl(std::ifstream *infile, std::ofstream *outfile, std::string messag
 	if (outfile != NULL && !outfile->fail())
 		outfile->close();
 	std::cout << message << std::endl;
+	message.~basic_string();
 	exit(EXIT_FAILURE);
 }
 
