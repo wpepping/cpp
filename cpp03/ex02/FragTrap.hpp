@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 20:14:04 by wpepping          #+#    #+#             */
-/*   Updated: 2024/11/21 18:45:03 by wpepping         ###   ########.fr       */
+/*   Created: 2024/11/17 17:41:38 by wpepping          #+#    #+#             */
+/*   Updated: 2024/11/29 15:26:11 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef __FragTrap_H__
+# define __FragTrap_H__
 
-Zombie* zombieHorde( int N, std::string name );
+# include "ClapTrap.hpp"
 
-int main(void) {
-	int nr_of_zombies = 4;
-	Zombie *horde;
+class FragTrap : public ClapTrap {
+public:
+	FragTrap();
+	FragTrap(std::string name);
+	FragTrap(FragTrap const &src);
+	~FragTrap();
 
-	horde = zombieHorde(nr_of_zombies, "testzombie");
-	for (int i = 0; i < nr_of_zombies; i++) {
-		horde[i].announce();
-	}
-	delete[] horde;
-	return (0);
-}
+	void attack(const std::string& target);
+	void takeDamage(unsigned int amount);
+	void beRepaired(unsigned int amount);
+	void highFivesGuys(void);
+};
+
+#endif

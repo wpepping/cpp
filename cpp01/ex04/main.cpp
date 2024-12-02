@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 20:14:04 by wpepping          #+#    #+#             */
-/*   Updated: 2024/11/20 15:53:48 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:50:58 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,14 @@ std::string read_file(char *fname) {
 std::string replace_string(std::string str, std::string rep, std::string with) {
 	int pos;
 	int replen;
+	int withlen;
 
 	replen = rep.length();
+	withlen = with.length();
 	pos = str.find(rep);
 	while (pos != -1) {
 		str = str.substr(0, pos) + with + str.substr(pos + replen);
-		pos = str.find(rep);
+		pos = str.find(rep, pos + withlen);
 	}
 	return (str);
 }

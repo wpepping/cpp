@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:54:32 by wpepping          #+#    #+#             */
-/*   Updated: 2024/11/17 16:15:45 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:33:38 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ public:
 
 	Fixed	&operator=(Fixed const &src);
 
-	bool	operator>(Fixed const &src);
-	bool	operator<(Fixed const &src);
-	bool	operator>=(Fixed const &src);
-	bool	operator<=(Fixed const &src);
-	bool	operator==(Fixed const &src);
-	bool	operator!=(Fixed const &src);
+	bool	operator>(Fixed const &src) const;
+	bool	operator<(Fixed const &src) const;
+	bool	operator>=(Fixed const &src) const;
+	bool	operator<=(Fixed const &src) const;
+	bool	operator==(Fixed const &src) const;
+	bool	operator!=(Fixed const &src) const;
 
 	Fixed	operator+(Fixed const &src);
 	Fixed	operator-(Fixed const &src);

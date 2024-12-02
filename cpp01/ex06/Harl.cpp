@@ -36,34 +36,28 @@ int Harl::_levelToInt( std::string level ) const {
 	return (-1);
 }
 
-void Harl::setFilter( std::string level ) {
-	_filter = _levelToInt(level);
-	if (_filter == -1)
-		_filter = 0;
-}
-
 void Harl::complain( std::string level ) const {
 	int level_n;
 
 	level_n = _levelToInt(level);
 
-	if (level_n >= _filter)
 		switch (level_n) {
 			case 0:
 				(this->*_functions[0])();
-				break;
+				// fallthrough
 			case 1:
 				(this->*_functions[1])();
-				break;
+				// fallthrough
 			case 2:
 				(this->*_functions[2])();
-				break;
+				// fallthrough
 			case 3:
 				(this->*_functions[3])();
 				break;
+			default:
+				std::cout << "Harl is confused." << std::endl;
+				break;
 		}
-	else if (level_n < 0)
-		std::cout << "Harl is confused." << std::endl;
 }
 
 void Harl::_debug( void ) const {

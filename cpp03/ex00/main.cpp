@@ -5,23 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 20:14:04 by wpepping          #+#    #+#             */
-/*   Updated: 2024/11/21 18:45:03 by wpepping         ###   ########.fr       */
+/*   Created: 2024/11/17 17:35:53 by wpepping          #+#    #+#             */
+/*   Updated: 2024/11/27 16:24:35 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-
-Zombie* zombieHorde( int N, std::string name );
+#include "ClapTrap.hpp"
 
 int main(void) {
-	int nr_of_zombies = 4;
-	Zombie *horde;
+	ClapTrap ct("My ClapTrap");
 
-	horde = zombieHorde(nr_of_zombies, "testzombie");
-	for (int i = 0; i < nr_of_zombies; i++) {
-		horde[i].announce();
-	}
-	delete[] horde;
-	return (0);
+	ct.beRepaired(2);
+	ct.takeDamage(5);
+	ct.beRepaired(2);
+	for (int i = 0; i < 10; i++)
+		ct.attack("My Target");
+	ct.beRepaired(2);
+	ct.takeDamage(4);
+	ct.takeDamage(4);
+	ct.takeDamage(4);
 }

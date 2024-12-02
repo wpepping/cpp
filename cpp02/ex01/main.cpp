@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:13:58 by wpepping          #+#    #+#             */
-/*   Updated: 2024/11/11 20:01:01 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/11/12 20:38:03 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int main( void ) {
 
 	a = Fixed( 1234.4321f );
 
-	// std::cout << "a is " << a << std::endl;
-	// std::cout << "b is " << b << std::endl;
-	// std::cout << "c is " << c << std::endl;
-	// std::cout << "d is " << d << std::endl;
+	std::cout << "a is " << a << std::endl;
+	std::cout << "b is " << b << std::endl;
+	std::cout << "c is " << c << std::endl;
+	std::cout << "d is " << d << std::endl;
 
 	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
 	std::cout << "b is " << b.toInt() << " as integer" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:45:21 by wpepping          #+#    #+#             */
-/*   Updated: 2024/11/17 16:26:34 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:31:46 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,27 @@ Fixed	&Fixed::operator=(Fixed const &src) {
 	return (*this);
 }
 
-bool	Fixed::operator>(Fixed const &src) {
+bool	Fixed::operator>(Fixed const &src) const {
 	return (this->_rawBits > src._rawBits);
 }
 
-bool	Fixed::operator<(Fixed const &src) {
+bool	Fixed::operator<(Fixed const &src) const {
 	return (this->_rawBits < src._rawBits);
 }
 
-bool	Fixed::operator>=(Fixed const &src) {
+bool	Fixed::operator>=(Fixed const &src) const {
 	return (this->_rawBits >= src._rawBits);
 }
 
-bool	Fixed::operator<=(Fixed const &src) {
+bool	Fixed::operator<=(Fixed const &src) const {
 	return (this->_rawBits <= src._rawBits);
 }
 
-bool	Fixed::operator==(Fixed const &src) {
+bool	Fixed::operator==(Fixed const &src) const {
 	return (this->_rawBits == src._rawBits);
 }
 
-bool	Fixed::operator!=(Fixed const &src) {
+bool	Fixed::operator!=(Fixed const &src) const {
 	return (this->_rawBits != src._rawBits);
 }
 
