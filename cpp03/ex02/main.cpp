@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 17:35:53 by wpepping          #+#    #+#             */
-/*   Updated: 2024/11/29 15:27:29 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:36:06 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void basic_tests(void) {
 
 	ClapTrap ct("My ClapTrap");
 	ScavTrap st("My ScavTrap");
-	FragTrap ft("My ScavTrap");
+	FragTrap ft("My FragTrap");
 
 	ct.attack("My Target");
 	ct.takeDamage(5);
