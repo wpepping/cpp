@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 19:02:45 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/12 17:58:04 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:04:21 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Brain::Brain(Brain const &src) {
 }
 
 Brain::~Brain() {
-    std::cout << "Brain destructor called." << std::endl;
+	std::cout << "Brain destructor called." << std::endl;
 }
 
 Brain &Brain::operator=(Brain const &src) {

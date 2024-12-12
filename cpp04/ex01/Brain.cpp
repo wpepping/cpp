@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 19:02:45 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/12 17:02:11 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:04:14 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,30 @@
 
 Brain::Brain() {
 	std::cout << "Brain default constructor called." << std::endl;
-    for (int i = 0; i < 100; i++) {
-        _ideas[i] = "";
-    }
+	for (int i = 0; i < 100; i++) {
+		_ideas[i] = "";
+	}
 }
 
 Brain::Brain(Brain const &src) {
 	std::cout << "Brain copy constructor called." << std::endl;
-    for (int i = 0; i < 100; i++) {
-        _ideas[i] = src._ideas[i];
-    }
+	for (int i = 0; i < 100; i++) {
+		_ideas[i] = src._ideas[i];
+	}
 }
 
 Brain::~Brain() {
-    std::cout << "Brain destructor called." << std::endl;
+	std::cout << "Brain destructor called." << std::endl;
 }
 
 Brain &Brain::operator=(Brain const &src) {
-    if (this != &src) { // Prevent self-assignment
-        for (int i = 0; i < 100; i++) {
-            _ideas[i] = src._ideas[i]; // Copy each idea from the source
-        }
-    }
-    std::cout << "Brain assignment operator called." << std::endl;
-    return *this;
+	if (this != &src) {
+		for (int i = 0; i < 100; i++) {
+			_ideas[i] = src._ideas[i];
+		}
+	}
+	std::cout << "Brain assignment operator called." << std::endl;
+	return *this;
 }
 
 std::string Brain::getIdea(int i) const {

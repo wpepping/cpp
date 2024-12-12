@@ -14,24 +14,24 @@
 #include <iostream>
 
 WrongAnimal::WrongAnimal() {
-    type = "";
-    std::cout << "WrongAnimal default constructor called." << std::endl;
+	type = "";
+	std::cout << "WrongAnimal default constructor called." << std::endl;
 }
 
 WrongAnimal::WrongAnimal(WrongAnimal const &src) {
-    this->type = src.type;
-    std::cout << "WrongAnimal copy constructor called." << std::endl;
+	this->type = src.type;
+	std::cout << "WrongAnimal copy constructor called." << std::endl;
 }
 
 WrongAnimal::~WrongAnimal() {
-    std::cout << "WrongAnimal destructor called." << std::endl;
+	std::cout << "WrongAnimal destructor called." << std::endl;
 }
 
 WrongAnimal &WrongAnimal::operator=(WrongAnimal const &src) {
-    if (this != &src)
-        this->type = src.type;
-    std::cout << "WrongAnimal assignment operator called." << std::endl;
-    return *this;
+	if (this != &src)
+		this->type = src.type;
+	std::cout << "WrongAnimal assignment operator called." << std::endl;
+	return *this;
 }
 
 std::string WrongAnimal::getType() const {
