@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 19:02:45 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/12 18:04:21 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:08:01 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ Brain::~Brain() {
 
 Brain &Brain::operator=(Brain const &src) {
 	if (this != &src)
-	{ // Prevent self-assignment
+	{
 		for (int i = 0; i < 100; i++)
 		{
-			_ideas[i] = src._ideas[i]; // Copy each idea from the source
+			_ideas[i] = src._ideas[i];
 		}
 	}
 	std::cout << "Brain assignment operator called." << std::endl;
