@@ -6,20 +6,19 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:33:05 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/12 17:10:55 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:21:05 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include <iostream>
 
 int main()
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const AAnimal* j = new Dog();
+	const AAnimal* i = new Cat();
 
 	std::cout << std::endl;
 
@@ -30,7 +29,6 @@ int main()
 
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
-	meta->makeSound();
 	((const Cat *)i)->makeSound();
 	((const Dog *)j)->makeSound();
 
@@ -47,7 +45,6 @@ int main()
 
 	std::cout << std::endl;
 
-	delete meta;
 	delete j;
 	delete i;
 

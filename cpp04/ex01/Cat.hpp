@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:15:15 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/11 19:22:32 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:10:00 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ public:
 	virtual ~Cat();
 	Cat &operator=(Cat const &src);
 
+	Brain *getBrain() const;
 	virtual void makeSound() const;
 
 private:

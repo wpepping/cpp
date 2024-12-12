@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AAnimal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:14:39 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/12 17:16:41 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:15:41 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __ANIMAL_H__
-# define __ANIMAL_H__
+#ifndef __AANIMAL_H__
+# define __AANIMAL_H__
 
 #include <string>
 
-class Animal {
+class AAnimal {
 public:
-	Animal();
-	Animal(Animal const &src);
-	virtual ~Animal();
-	Animal &operator=(Animal const &src);
+	virtual ~AAnimal();
 
 	std::string getType() const;
-	virtual void makeSound() const;
+	virtual void makeSound() const = 0;
 
 protected:
 	 std::string type;

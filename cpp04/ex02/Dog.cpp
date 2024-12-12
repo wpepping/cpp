@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:29:50 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/12 17:10:13 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:21:05 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Dog::Dog() {
 	_brain = new Brain();
 }
 
-Dog::Dog(Dog const &src) : Animal(src) {
+Dog::Dog(Dog const &src) : AAnimal(src) {
 	this->_brain = new Brain(*src._brain);
     std::cout << "Dog copy constructor called." << std::endl;
 }

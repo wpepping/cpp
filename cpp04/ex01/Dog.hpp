@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:20:03 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/11 19:00:03 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:10:04 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ public:
 	virtual ~Dog();
 	Dog &operator=(Dog const &src);
 
+	Brain *getBrain() const;
 	virtual void makeSound() const;
 
 private:

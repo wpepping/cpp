@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 15:14:39 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/12 17:16:41 by wpepping         ###   ########.fr       */
+/*   Created: 2024/12/11 15:20:22 by wpepping          #+#    #+#             */
+/*   Updated: 2024/12/12 17:20:55 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __ANIMAL_H__
-# define __ANIMAL_H__
+#include "AAnimal.hpp"
+#include <iostream>
 
-#include <string>
+AAnimal::~AAnimal() {
+    std::cout << "AAnimal destructor called." << std::endl;
+}
 
-class Animal {
-public:
-	Animal();
-	Animal(Animal const &src);
-	virtual ~Animal();
-	Animal &operator=(Animal const &src);
-
-	std::string getType() const;
-	virtual void makeSound() const;
-
-protected:
-	 std::string type;
-};
-
-#endif
+std::string AAnimal::getType() const {
+	return (type);
+}

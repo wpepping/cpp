@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:27:22 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/11 19:22:56 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:10:16 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,8 @@ Cat &Cat::operator=(Cat const &src) {
 
 void Cat::makeSound() const {
 	std::cout << "Cat meows." << std::endl;
+}
+
+Brain *Cat::getBrain() const {
+	return _brain;
 }
