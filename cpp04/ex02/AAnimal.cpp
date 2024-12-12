@@ -14,7 +14,7 @@
 #include <iostream>
 
 AAnimal::~AAnimal() {
-    std::cout << "AAnimal destructor called." << std::endl;
+	std::cout << "AAnimal destructor called." << std::endl;
 }
 
 std::string AAnimal::getType() const {

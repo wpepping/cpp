@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:33:05 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/12 17:10:55 by wpepping         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:52:12 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 
 int main()
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const 	Animal* meta 	= new Animal();
+	const 	Animal* j 		= new Dog();
+	const 	Animal* i 		= new Cat();
+	Animal	*animals[100];
 
 	std::cout << std::endl;
 
@@ -50,6 +51,20 @@ int main()
 	delete meta;
 	delete j;
 	delete i;
+
+	std::cout << std::endl;
+
+	for (int i = 0; i < 10; i++) {
+		if (i % 2)
+			animals[i] = new Dog();
+		else
+			animals[i] = new Cat();
+	}
+
+	std::cout << std::endl;
+
+	for (int i = 0; i < 10; i++)
+		delete animals[i];
 
 	return 0;
 }
