@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:33:05 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/12 17:52:12 by wpepping         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:53:54 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int main()
 	const 	Animal* meta 	= new Animal();
 	const 	Animal* j 		= new Dog();
 	const 	Animal* i 		= new Cat();
+	const	Cat* c			= new Cat();
 	Animal	*animals[100];
 
 	std::cout << std::endl;
@@ -39,6 +40,14 @@ int main()
 
 	((Cat *)i)->getBrain()->setIdea(0, "Love is just a chemical reaction in the brain.");
 	const Cat a(*((const Cat *)i));
+	std::cout << "-- Create cat b" << std::endl;
+	Cat b = *c;
+	std::cout << "-- Done creating cat b" << std::endl;
+	std::cout << "-- Create cat d" << std::endl;
+	Cat d;
+	d = *(Cat *)i;
+	std::cout << "-- Done creating cat d" << std::endl;
+	Cat e;
 
 	std::cout << std::endl;
 
@@ -51,6 +60,7 @@ int main()
 	delete meta;
 	delete j;
 	delete i;
+	delete c;
 
 	std::cout << std::endl;
 

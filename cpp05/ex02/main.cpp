@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 15:14:39 by wpepping          #+#    #+#             */
-/*   Updated: 2025/02/06 17:08:03 by wpepping         ###   ########.fr       */
+/*   Created: 2024/12/11 15:33:05 by wpepping          #+#    #+#             */
+/*   Updated: 2025/02/16 16:54:26 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __ANIMAL_H__
-# define __ANIMAL_H__
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
+#include <iostream>
 
-#include <string>
+int main()
+{
+	Bureaucrat c("Jimmy", 149);
+	Bureaucrat d("Johnny", 2);
 
-class Animal {
-public:
-	Animal();
-	Animal(Animal const &src);
-	virtual ~Animal();
-	Animal &operator=(Animal const &src);
+	Form f;
+	Form g("ApplicationForm", 10, 10);
 
-	std::string getType() const;
-	virtual void makeSound() const;
+	std::cout << f << std::endl;
+	std::cout << g << std::endl;
 
-protected:
-	 std::string type;
-};
-
-#endif
+	c.signForm(g);
+	d.signForm(g);
+}

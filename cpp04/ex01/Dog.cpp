@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:29:50 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/12 17:59:37 by wpepping         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:50:24 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ Dog &Dog::operator=(Dog const &src) {
 	std::cout << "Dog assignment operator called." << std::endl;
 	if (this != &src)
 	{
+		delete this->_brain;
 		this->type = src.type;
 		this->_brain = new Brain(*src._brain);
 	}

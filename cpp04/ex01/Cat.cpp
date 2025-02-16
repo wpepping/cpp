@@ -6,7 +6,7 @@
 /*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:27:22 by wpepping          #+#    #+#             */
-/*   Updated: 2024/12/12 17:59:53 by wpepping         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:50:21 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ Cat &Cat::operator=(Cat const &src) {
 	std::cout << "Cat assignment operator called." << std::endl;
 	if (this != &src)
 	{
+		delete this->_brain;
 		this->type = src.type;
 		this->_brain = new Brain(*src._brain);
 	}
