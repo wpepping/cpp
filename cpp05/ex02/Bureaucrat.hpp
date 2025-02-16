@@ -5,7 +5,7 @@
 #ifndef __BUREAUCRAT_H__
 # define __BUREAUCRAT_H__
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 public:
@@ -29,7 +29,8 @@ public:
 	int getGrade() const;
 	void incrementGrade() throw(GradeTooHighException);
 	void decrementGrade() throw(GradeTooLowException);
-	void signForm(Form &f) const throw(GradeTooLowException);
+	void signForm(AForm &f) const throw(GradeTooLowException);
+	void executeForm(AForm const &f);
 
 private:
 	const std::string	_name;
