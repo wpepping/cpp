@@ -11,7 +11,7 @@ PresidentialPardonForm::PresidentialPardonForm() :
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target) :
 	AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target(target) { }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) : AForm(src), _target(src._target) { }
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) : _target(src._target) { }
 
 PresidentialPardonForm::~PresidentialPardonForm() { }
 
@@ -32,4 +32,8 @@ void PresidentialPardonForm::execute(Bureaucrat const &executor) const throw(AFo
 		throw AForm::GradeTooLowException();
 
 	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+}
+
+static AForm* create(std::string target) {   // Static factory method
+	return new PresidentialPardonForm(target);
 }

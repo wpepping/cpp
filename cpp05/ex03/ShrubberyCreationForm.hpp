@@ -12,6 +12,7 @@ public:
 
 	std::string getTarget() const;
 	virtual void execute(Bureaucrat const &executor) const throw(AForm::GradeTooLowException, AForm::FormNotSignedException);
+	virtual AForm *create(std::string &target);
 
 private:
 	const std::string _target;
