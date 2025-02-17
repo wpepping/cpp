@@ -1,15 +1,13 @@
 #include <string>
+#include <iostream>
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
+#define NR_OF_FORMS 3
+
 class Intern {
 public:
-	class UnknownFormException : public std::exception {
-	public:
-		virtual const char* what() const throw();
-	};
-
 	Intern();
 	Intern(Intern &i);
 	~Intern();
@@ -18,6 +16,6 @@ public:
 	AForm *makeForm(std::string formName, std::string target);
 
 private:
-	const std::string	FORM_NAMES[3];
-	const AForm			(*FORM_CLASSES[3])(std::string);
+	std::string	_form_names[NR_OF_FORMS];
+	AForm*		(*_form_classes[NR_OF_FORMS])(std::string);
 };

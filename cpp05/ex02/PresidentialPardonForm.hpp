@@ -1,9 +1,12 @@
 #include "AForm.hpp"
 
+#ifndef __PRESIDENTIAL_PARDON_FORM_H__
+# define __PRESIDENTIAL_PARDON_FORM_H__
+
 class PresidentialPardonForm : public AForm {
 public:
 	PresidentialPardonForm();
-	PresidentialPardonForm(const std::string &target);
+	PresidentialPardonForm(const std::string target);
 	PresidentialPardonForm(const PresidentialPardonForm &src);
 	~PresidentialPardonForm();
 	PresidentialPardonForm &operator=(PresidentialPardonForm const &src);
@@ -18,3 +21,5 @@ private:
 	static const int SIGN_GRADE;
 	static const int EXEC_GRADE;
 };
+
+#endif

@@ -8,10 +8,10 @@ const int RobotomyRequestForm::EXEC_GRADE = 45;
 RobotomyRequestForm::RobotomyRequestForm() :
 	AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target("") { }
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string &target) :
+RobotomyRequestForm::RobotomyRequestForm(const std::string target) :
 	AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target(target) { }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src) : _target(src._target) { }
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src) : AForm(src), _target(src._target) { }
 
 RobotomyRequestForm::~RobotomyRequestForm() { }
 
@@ -37,4 +37,8 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const throw(AForm:
 		std::cout << _target << " has been robotomized successfully." << std::endl;
 	else
 		std::cout << "Robotomy failed." << std::endl;
+}
+
+AForm* RobotomyRequestForm::create(std::string target) {
+	return new RobotomyRequestForm(target);
 }

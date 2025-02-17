@@ -1,10 +1,13 @@
 #include <cstdlib>
 #include "AForm.hpp"
 
+#ifndef __ROBOTOMY_REQUEST_FORM_H__
+# define __ROBOTOMY_REQUEST_FORM_H__
+
 class RobotomyRequestForm : public AForm {
 public:
 	RobotomyRequestForm();
-	RobotomyRequestForm(const std::string &target);
+	RobotomyRequestForm(const std::string target);
 	RobotomyRequestForm(const RobotomyRequestForm &src);
 	~RobotomyRequestForm();
 	RobotomyRequestForm &operator=(RobotomyRequestForm const &src);
@@ -19,3 +22,5 @@ private:
 	static const int SIGN_GRADE;
 	static const int EXEC_GRADE;
 };
+
+#endif

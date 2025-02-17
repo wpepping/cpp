@@ -2,16 +2,16 @@
 #include "Bureaucrat.hpp"
 
 const std::string PresidentialPardonForm::FORM_NAME = "Presidential pardon form";
-const int PresidentialPardonForm::SIGN_GRADE = 72;
-const int PresidentialPardonForm::EXEC_GRADE = 45;
+const int PresidentialPardonForm::SIGN_GRADE = 25;
+const int PresidentialPardonForm::EXEC_GRADE = 5;
 
 PresidentialPardonForm::PresidentialPardonForm() :
 	AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target("") { }
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string &target) :
+PresidentialPardonForm::PresidentialPardonForm(const std::string target) :
 	AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target(target) { }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) : _target(src._target) { }
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) : AForm(src), _target(src._target) { }
 
 PresidentialPardonForm::~PresidentialPardonForm() { }
 
@@ -34,6 +34,6 @@ void PresidentialPardonForm::execute(Bureaucrat const &executor) const throw(AFo
 	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }
 
-static AForm* create(std::string target) {   // Static factory method
+AForm* PresidentialPardonForm::create(std::string target) {
 	return new PresidentialPardonForm(target);
 }

@@ -8,7 +8,7 @@ const int RobotomyRequestForm::EXEC_GRADE = 45;
 RobotomyRequestForm::RobotomyRequestForm() :
 	AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target("") { }
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string &target) :
+RobotomyRequestForm::RobotomyRequestForm(const std::string target) :
 	AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target(target) { }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src) : AForm(src), _target(src._target) { }

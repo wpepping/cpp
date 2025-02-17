@@ -1,32 +1,30 @@
 #include "Intern.hpp"
 
-// Static array initialization outside of the constructor
-const std::string Intern::FORM_NAMES[3] = {"PresidentialPardonForm", "RobotomyRequestForm", "ShrubberyCreationForm"};
-const AForm* (*Intern::FORM_CLASSES[3])(std::string) = {&createPresidentialPardonForm, &createRobotomyRequestForm, &createShrubberyCreationForm};
+Intern::Intern() {
+	_form_names[0] = "presidential pardon";
+	_form_names[1] = "robotomy request";
+	_form_names[2] = "shrubbery creation";
+    _form_classes[0] = &PresidentialPardonForm::create;
+	_form_classes[1] = &RobotomyRequestForm::create;
+	_form_classes[2] = &ShrubberyCreationForm::create;
+}
 
-// Constructor
-Intern::Intern() {}
+Intern::Intern(Intern &i) {
+	(void)i;
+}
 
-// Copy Constructor
-Intern::Intern(Intern &i) {}
+Intern::~Intern() { }
 
-// Destructor
-Intern::~Intern() {}
-
-// Assignment Operator
 Intern &Intern::operator=(Intern const &src) {
-    if (this != &src) {
-        // Normally you'd copy any dynamic state, but FORM_NAMES and FORM_CLASSES are static and cannot be changed.
-    }
+	(void)src;
     return *this;
 }
 
-// The makeForm function implementation
 AForm* Intern::makeForm(std::string formName, std::string target) {
-    for (int i = 0; i < 3; ++i) {
-        if (FORM_NAMES[i] == formName) {
-            return FORM_CLASSES[i](target);
-        }
-    }
-    throw UnknownFormException();
+	for (int i = 0; i < NR_OF_FORMS; ++i) {
+		if (_form_names[i] == formName)
+			return (*_form_classes[i])(target);
+	}
+	std::cout << "Form type " << formName << " not found." << std::endl;
+	return NULL;
 }

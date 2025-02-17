@@ -15,7 +15,21 @@ AForm::AForm(const std::string name, int sign_grade, int exec_grade)
 		throw AForm::GradeTooLowException();
 }
 
+AForm::AForm(const AForm &f) :
+	_name(f._name),
+	_sign_grade(f._sign_grade),
+	_exec_grade(f._exec_grade),
+	_is_signed(f._is_signed) { }
+
 AForm::~AForm() { }
+
+AForm &AForm::operator=(AForm const &src) {
+	if (this != &src)
+	{
+		this->_is_signed = src._is_signed;
+	}
+	return *this;
+}
 
 const std::string AForm::getName() const {
 	return _name;

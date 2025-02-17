@@ -8,10 +8,10 @@ const int ShrubberyCreationForm::EXEC_GRADE = 137;
 ShrubberyCreationForm::ShrubberyCreationForm() :
 	AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target("") { }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) :
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) :
 	AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target(target) { }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) : _target(src._target) { }
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) : AForm(src), _target(src._target) { }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() { }
 
@@ -50,4 +50,8 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const throw(AFor
 		outfile << "      // \\\\" << std::endl;
 		outfile.close();
 	}
+}
+
+AForm* ShrubberyCreationForm::create(std::string target) {
+	return new ShrubberyCreationForm(target);
 }

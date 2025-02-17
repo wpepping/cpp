@@ -26,7 +26,9 @@ public:
 
 	AForm();
 	AForm(const std::string name, int sign_grade, int exec_grade) throw(GradeTooHighException, GradeTooLowException);
+	AForm(const AForm &f);
 	virtual ~AForm();
+	AForm &operator=(AForm const &src);
 
 	const std::string getName() const;
 	int getSignGrade() const;
@@ -34,7 +36,6 @@ public:
 	bool isSigned() const;
 	void beSigned(const Bureaucrat &b) throw(GradeTooLowException);
 	virtual void execute(Bureaucrat const &executor) const throw(AForm::GradeTooLowException, AForm::FormNotSignedException) = 0;
-	virtual void create(std::string &target) = 0;
 
 protected:
 	const std::string	_name;
