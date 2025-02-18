@@ -12,21 +12,21 @@ public:
 	~ScalarConverterFormats();
 	ScalarConverterFormats &operator=(const ScalarConverterFormats &other);
 
-	char getChr() const;
-	int getInteger() const;
-	double getDbl() const;
-	float getFlt() const;
+	char getChar() const;
+	int getInt() const;
+	double getDouble() const;
+	float getFloat() const;
 
-	void setChr(char chr);
-	void setInteger(int integer);
-	void setDbl(double dbl);
-	void setFlt(float flt);
+	void setChar(char chr);
+	void setInt(int integer);
+	void setDouble(double dbl);
+	void setFloat(float flt);
 
 private:
-	char _chr;
-	int _integer;
-	double _dbl;
-	float _flt;
+	char	_chr;
+	int		_integer;
+	double	_dbl;
+	float	_flt;
 };
 
 #endif

@@ -1,3 +1,7 @@
+#include <cstdlib>
+#include <iostream>
+#include <limits>
+#include <stdexcept>
 #include <string>
 #include "ScalarConverterFormats.hpp"
 
@@ -13,6 +17,11 @@
 class ScalarConverter {
 
 public:
+	class ConversionFailedException : std::exception {
+	public:
+		virtual const char* what() const throw();
+	};
+
 	static void convert(std::string str);
 
 private:
@@ -25,9 +34,9 @@ private:
 	static bool						_isFloat(std::string str);
 	static void						_err_handl(std::string message);
 	static void						_output_formats(ScalarConverterFormats *formats);
-	static ScalarConverterFormats*	_readFromInt(std::string str);
-	static ScalarConverterFormats*	_readFromDouble(std::string str);
-	static ScalarConverterFormats*	_readFromFloat(std::string str);
+	static ScalarConverterFormats*	_readFromInt(std::string str) throw(ConversionFailedException);
+	static ScalarConverterFormats*	_readFromDouble(std::string str) throw(ConversionFailedException);
+	static ScalarConverterFormats*	_readFromFloat(std::string str) throw(ConversionFailedException);
 	static ScalarConverterFormats*	_readFromChar(std::string str);
 };
 

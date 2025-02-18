@@ -21,34 +21,34 @@ ScalarConverterFormats& ScalarConverterFormats::operator=(const ScalarConverterF
 	return *this;
 }
 
-char ScalarConverterFormats::getChr() const {
+char ScalarConverterFormats::getChar() const {
 	return _chr;
 }
 
-int ScalarConverterFormats::getInteger() const {
+int ScalarConverterFormats::getInt() const {
 	return _integer;
 }
 
-double ScalarConverterFormats::getDbl() const {
+double ScalarConverterFormats::getDouble() const {
 	return _dbl;
 }
 
-float ScalarConverterFormats::getFlt() const {
+float ScalarConverterFormats::getFloat() const {
 	return _flt;
 }
 
-void ScalarConverterFormats::setChr(char chr) {
+void ScalarConverterFormats::setChar(char chr) {
 	_chr = chr;
 }
 
-void ScalarConverterFormats::setInteger(int integer) {
+void ScalarConverterFormats::setInt(int integer) {
 	_integer = integer;
 }
 
-void ScalarConverterFormats::setDbl(double dbl) {
+void ScalarConverterFormats::setDouble(double dbl) {
 	_dbl = dbl;
 }
 
-void ScalarConverterFormats::setFlt(float flt) {
+void ScalarConverterFormats::setFloat(float flt) {
 	_flt = flt;
 }
