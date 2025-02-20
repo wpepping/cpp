@@ -25,7 +25,7 @@ void ScalarConverter::convert(std::string str) {
 		return;
 	}
 
-	_output_formats(formats);
+	_output_formats(*formats);
 	delete formats;
 }
 
@@ -147,23 +147,23 @@ const char* ScalarConverter::ConversionFailedException::what() const throw() {
 	return ("Conversion failed");
 }
 
-void ScalarConverter::_output_formats(ScalarConverterFormats* formats) {
+void ScalarConverter::_output_formats(ScalarConverterFormats& formats) {
 	long 		l;
-	std::string	whole_nr_decimal = (formats->getFloat() == formats->getInt()?".0":"");
+	std::string	whole_nr_decimal = (formats.getFloat() == formats.getInt()?".0":"");
 
-	l = static_cast<long>(formats->getDouble());
+	l = static_cast<long>(formats.getDouble());
 	if (l < std::numeric_limits<char>::min() || l > std::numeric_limits<char>::max())
 		std::cout << "char: impossible" << std::endl;
-	else if (isprint(formats->getChar()))
-		std::cout << "char: '" << formats->getChar() << "'" << std::endl;
+	else if (isprint(formats.getChar()))
+		std::cout << "char: '" << formats.getChar() << "'" << std::endl;
 	else
 		std::cout << "char: not printable"  << std::endl;
 	if (l < std::numeric_limits<int>::min() || l > std::numeric_limits<int>::max())
 		std::cout << "impossible" << std::endl;
 	else
-		std::cout << "int: " << formats->getInt() << std::endl;
-	std::cout << "float: " << formats->getFloat() << whole_nr_decimal << 'f' << std::endl;
-	std::cout << "double: " << formats->getDouble() << whole_nr_decimal << std::endl;
+		std::cout << "int: " << formats.getInt() << std::endl;
+	std::cout << "float: " << formats.getFloat() << whole_nr_decimal << 'f' << std::endl;
+	std::cout << "double: " << formats.getDouble() << whole_nr_decimal << std::endl;
 }
 
 void ScalarConverter::_err_handl(std::string message) {
