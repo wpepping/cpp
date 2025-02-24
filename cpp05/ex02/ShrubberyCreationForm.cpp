@@ -18,7 +18,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() { }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm const &src) {
 	if (this != &src)
-		this->_is_signed = src._is_signed;
+		this->setSigned(src.isSigned());
 	return *this;
 }
 
@@ -31,9 +31,9 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 	std::string fname;
 	std::ofstream outfile;
 
-	if (!_is_signed)
+	if (!isSigned())
 		throw AForm::FormNotSignedException();
-	if (executor.getGrade() > _exec_grade)
+	if (executor.getGrade() > getExecGrade())
 		throw AForm::GradeTooLowException();
 
 	fname = _target + "_shrubbery";

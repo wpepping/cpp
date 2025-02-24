@@ -65,10 +65,8 @@ bool ScalarConverter::_isFloat(std::string str) {
 	std::string substr;
 	size_t		strlen;
 
-	if (str == INF_FLOAT || str == NEGATIVE_INF_FLOAT)
-		return true;
 	strlen = str.length();
-	if (strlen < 2 || str[strlen - 1] != 'f')
+	if (strlen < 2 || str[strlen - 1] != 'f' || str == "nanf")
 		return false;
 	substr = str.substr(0, strlen - 1);
 	return (_isInt(substr) || _isDouble(substr));
@@ -159,7 +157,7 @@ void ScalarConverter::_output_formats(ScalarConverterFormats& formats) {
 	else
 		std::cout << "char: not printable"  << std::endl;
 	if (l < std::numeric_limits<int>::min() || l > std::numeric_limits<int>::max())
-		std::cout << "impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << formats.getInt() << std::endl;
 	std::cout << "float: " << formats.getFloat() << whole_nr_decimal << 'f' << std::endl;

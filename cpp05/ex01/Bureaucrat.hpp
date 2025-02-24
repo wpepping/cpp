@@ -29,7 +29,7 @@ public:
 	int getGrade() const;
 	void incrementGrade() throw(GradeTooHighException);
 	void decrementGrade() throw(GradeTooLowException);
-	void signForm(Form &f) const throw(GradeTooLowException);
+	void signForm(Form &f) const;
 
 private:
 	const std::string	_name;

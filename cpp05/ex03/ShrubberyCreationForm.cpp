@@ -11,13 +11,14 @@ ShrubberyCreationForm::ShrubberyCreationForm() :
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) :
 	AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target(target) { }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) : AForm(src), _target(src._target) { }
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) :
+	AForm(src), _target(src._target) { }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() { }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm const &src) {
 	if (this != &src)
-		this->_is_signed = src._is_signed;
+		this->setSigned(src.isSigned());
 	return *this;
 }
 
@@ -25,13 +26,14 @@ std::string ShrubberyCreationForm::getTarget() const {
 	return _target;
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const &executor) const throw(AForm::GradeTooLowException, AForm::FormNotSignedException) {
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+	throw(AForm::GradeTooLowException, AForm::FormNotSignedException) {
 	std::string fname;
 	std::ofstream outfile;
 
-	if (!_is_signed)
+	if (!isSigned())
 		throw AForm::FormNotSignedException();
-	if (executor.getGrade() > _exec_grade)
+	if (executor.getGrade() > getExecGrade())
 		throw AForm::GradeTooLowException();
 
 	fname = _target + "_shrubbery";

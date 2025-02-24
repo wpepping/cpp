@@ -30,7 +30,6 @@ public:
 	virtual ~AForm();
 	AForm &operator=(AForm const &src);
 
-
 	const std::string getName() const;
 	int getSignGrade() const;
 	int getExecGrade() const;
@@ -39,6 +38,9 @@ public:
 	virtual void execute(Bureaucrat const &executor) const throw(AForm::GradeTooLowException, AForm::FormNotSignedException) = 0;
 
 protected:
+	void setSigned(bool value);
+
+private:
 	const std::string	_name;
 	const int			_sign_grade;
 	const int			_exec_grade;

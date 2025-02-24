@@ -11,13 +11,14 @@ RobotomyRequestForm::RobotomyRequestForm() :
 RobotomyRequestForm::RobotomyRequestForm(const std::string target) :
 	AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target(target) { }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src) : AForm(src), _target(src._target) { }
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src) :
+	AForm(src), _target(src._target) { }
 
 RobotomyRequestForm::~RobotomyRequestForm() { }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &src) {
 	if (this != &src)
-		this->_is_signed = src._is_signed;
+		this->setSigned(src.isSigned());
 	return *this;
 }
 
@@ -25,10 +26,11 @@ std::string RobotomyRequestForm::getTarget() const {
 	return _target;
 }
 
-void RobotomyRequestForm::execute(Bureaucrat const &executor) const throw(AForm::GradeTooLowException, AForm::FormNotSignedException) {
-	if (!_is_signed)
+void RobotomyRequestForm::execute(Bureaucrat const &executor) const
+	throw(AForm::GradeTooLowException, AForm::FormNotSignedException) {
+	if (!isSigned())
 		throw AForm::FormNotSignedException();
-	if (executor.getGrade() > _exec_grade)
+	if (executor.getGrade() > getExecGrade())
 		throw AForm::GradeTooLowException();
 
 	std::cout << "... drilling noises ..." << std::endl;

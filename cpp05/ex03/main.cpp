@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wouter <wouter@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wpepping <wpepping@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:33:05 by wpepping          #+#    #+#             */
-/*   Updated: 2025/02/17 15:06:25 by wouter           ###   ########.fr       */
+/*   Updated: 2025/02/16 19:19:32 by wpepping         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,41 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
-#include "Intern.hpp"
 #include <iostream>
 
 int main()
 {
-	Bureaucrat c("Johnny", 60);
+	Bureaucrat c("Jimmy", 140);
+	Bureaucrat d("Johnny", 60);
+	Bureaucrat e("James", 10);
+	Bureaucrat f("Zaphod Beeblebrox", 1);
 
-	Intern i;
-	AForm *f;
+	PresidentialPardonForm p;
+	PresidentialPardonForm o("meeeee");
 
-	f = PresidentialPardonForm::create("test");
-	delete f;
-	f = i.makeForm("presidential pardon", "test");
-	c.signForm(*f);
-	c.executeForm(*f);
-	delete f;
-	f = i.makeForm("robotomy request", "test");
-	c.signForm(*f);
-	c.executeForm(*f);
-	delete f;
-	f = i.makeForm("shrubbery creation", "test");
-	c.signForm(*f);
-	c.executeForm(*f);
-	delete f;
-	i.makeForm("dolphin treat request", "");
+	std::cout << p << std::endl;
+	std::cout << o << std::endl;
+
+	c.signForm(o);
+	f.executeForm(o);
+	e.signForm(o);
+	e.executeForm(o);
+	f.executeForm(o);
+
+	std::cout << std::endl;
+
+	RobotomyRequestForm r("Arthur Dent");
+	c.signForm(r);
+	f.executeForm(r);
+	d.signForm(r);
+	d.executeForm(r);
+	e.executeForm(r);
+
+	std::cout << std::endl;
+
+	ShrubberyCreationForm s("Shrubber");
+	f.executeForm(s);
+	c.signForm(s);
+	c.executeForm(s);
+	d.executeForm(s);
 }
