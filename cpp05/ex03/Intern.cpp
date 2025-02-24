@@ -22,8 +22,10 @@ Intern &Intern::operator=(Intern const &src) {
 
 AForm* Intern::makeForm(std::string formName, std::string target) {
 	for (int i = 0; i < NR_OF_FORMS; ++i) {
-		if (_form_names[i] == formName)
+		if (_form_names[i] == formName) {
+			std::cout << "Intern creates " << formName << std::endl;
 			return (*_form_classes[i])(target);
+		}
 	}
 	std::cout << "Form type " << formName << " not found." << std::endl;
 	return NULL;
