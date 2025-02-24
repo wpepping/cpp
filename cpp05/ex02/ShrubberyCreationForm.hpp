@@ -14,7 +14,8 @@ public:
 	ShrubberyCreationForm &operator=(ShrubberyCreationForm const &src);
 
 	std::string getTarget() const;
-	virtual void execute(Bureaucrat const &executor) const throw(AForm::GradeTooLowException, AForm::FormNotSignedException);
+	virtual void execute(Bureaucrat const &executor) const
+		throw(AForm::GradeTooLowException, AForm::FormNotSignedException);
 
 private:
 	const std::string _target;

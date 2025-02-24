@@ -11,7 +11,8 @@ ShrubberyCreationForm::ShrubberyCreationForm() :
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) :
 	AForm(FORM_NAME, SIGN_GRADE, EXEC_GRADE), _target(target) { }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) : AForm(src), _target(src._target) { }
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) :
+	AForm(src), _target(src._target) { }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() { }
 
@@ -25,7 +26,8 @@ std::string ShrubberyCreationForm::getTarget() const {
 	return _target;
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const &executor) const throw(AForm::GradeTooLowException, AForm::FormNotSignedException) {
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+	throw(AForm::GradeTooLowException, AForm::FormNotSignedException) {
 	std::string fname;
 	std::ofstream outfile;
 

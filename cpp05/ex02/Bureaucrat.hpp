@@ -30,7 +30,7 @@ public:
 	void incrementGrade() throw(GradeTooHighException);
 	void decrementGrade() throw(GradeTooLowException);
 	void signForm(AForm &f) const throw(GradeTooLowException);
-	void executeForm(AForm const &f);
+	void executeForm(AForm const &f) const;
 
 private:
 	const std::string	_name;
