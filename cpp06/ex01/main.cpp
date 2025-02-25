@@ -9,6 +9,7 @@ int main(void) {
 
 	d.key = "Hello";
 	d.value = "World!";
+	std::cout << d.key << " " << d.value << std::endl;
 	p = &d;
 	uip = Serializer::serialize(p);
 	p = Serializer::deserialize(uip);

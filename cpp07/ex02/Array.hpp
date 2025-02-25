@@ -1,4 +1,3 @@
-#include <cstddef>
 #include <exception>
 
 #ifndef __ARRAY_H__
@@ -20,7 +19,7 @@ public:
 		_size = 0;
 	}
 
-	Array<T>(size_t size) {
+	Array<T>(unsigned int size) {
 		_array = new T[size]();
 		_size = size;
 	}
@@ -29,7 +28,7 @@ public:
 		_array = new T[src._size];
 		_size = src._size;
 
-		for (size_t i = 0; i < src._size; i++) {
+		for (unsigned int i = 0; i < src._size; i++) {
 			_array[i] = T(src._array[i]);
 		}
 	}
@@ -40,7 +39,7 @@ public:
 
 			_array = new T[src._size];
 			_size = src._size;
-			for (size_t i = 0; i < src._size; i++) {
+			for (unsigned int i = 0; i < src._size; i++) {
 				_array[i] = T(src._array[i]);
 			}
 		}
@@ -51,15 +50,19 @@ public:
 		delete[] _array;
 	}
 
-	T &operator[](size_t i) throw(IndexOutOfBoundsException) {
+	T &operator[](unsigned int i) const throw(IndexOutOfBoundsException) {
 		if (i >= _size)
 			throw IndexOutOfBoundsException();
 		return _array[i];
 	}
 
+	unsigned int size() const {
+		return _size;
+	}
+
 private:
-	size_t	_size;
-	T		*_array;
+	unsigned int	_size;
+	T				*_array;
 };
 
 #endif

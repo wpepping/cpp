@@ -5,21 +5,15 @@
 #include "C.hpp"
 
 Base* generate(void) {
-	int i;
-	Base* result;
-
-	i = rand() % 3;
-	switch (i) {
+	switch (rand() % 3) {
 		case 0:
-			result = new A();
-			break;
+			return new A();
 		case 1:
-			result = new B();
-			break;
+			return new B();
 		case 2:
-			result = new C();
+			return new C();
 	}
-	return (result);
+	return NULL;
 }
 
 void identify(Base* p) {
@@ -39,15 +33,15 @@ void identify(Base* p) {
 
 void identify(Base& p) {
 	try {
-		dynamic_cast<A &>(p);
+		(void)dynamic_cast<A &>(p);
 		std::cout << "A" << std::endl;
 	} catch (std::exception &e) { }
 	try {
-		dynamic_cast<B &>(p);
+		(void)dynamic_cast<B &>(p);
 		std::cout << "B" << std::endl;
 	} catch (std::exception &e) { }
 	try {
-		dynamic_cast<C &>(p);
+		(void)dynamic_cast<C &>(p);
 		std::cout << "C" << std::endl;
 	} catch (std::exception &e) { }
 }
