@@ -7,7 +7,7 @@ template<typename T>
 class Array {
 
 public:
-	class IndexOutOfBoundsException : std::exception {
+	class IndexOutOfBoundsException : public std::exception {
 		public:
 			virtual const char* what() const throw() {
 				return "Index out of bounds";

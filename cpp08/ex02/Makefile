@@ -1,7 +1,7 @@
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.obj)
 NAME = main
-HEADERS = easyfind.hpp
+HEADERS = MutantStack.hpp
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 

@@ -1,7 +1,7 @@
-SRCS = main.cpp
+SRCS = main.cpp Span.cpp
 OBJS = $(SRCS:.cpp=.obj)
 NAME = main
-HEADERS = easyfind.hpp
+HEADERS = Span.hpp
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
