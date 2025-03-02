@@ -19,14 +19,14 @@ Span &Span::operator=(const Span &src) {
 	return *this;
 }
 
-void Span::addNumber(int n) {
+void Span::addNumber(int n) throw(CapacityLimitReachedException) {
 	if (_size >= _max_size)
 		throw Span::CapacityLimitReachedException();
 	_size++;
 	_data.push_back(n);
 }
 
-int Span::shortestSpan() const {
+int Span::shortestSpan() const throw(UnableToComplyException) {
 	int min = std::numeric_limits<int>::max();
 
 	if (_size < 2)
@@ -40,7 +40,7 @@ int Span::shortestSpan() const {
 	return min;
 }
 
-int Span::longestSpan() const {
+int Span::longestSpan() const throw(UnableToComplyException) {
 	if (_size < 2)
 		throw Span::UnableToComplyException();
 	return *std::max_element(_data.begin(), _data.end())

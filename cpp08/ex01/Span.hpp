@@ -25,13 +25,13 @@ public:
 	Span(const Span &src);
 	Span &operator=(const Span &src);
 
-	void addNumber(const int n);
-	int shortestSpan() const;
-	int longestSpan() const;
+	void addNumber(const int n) throw(CapacityLimitReachedException);
+	int shortestSpan() const throw(UnableToComplyException);
+	int longestSpan() const throw(UnableToComplyException);
 	unsigned int size() const;
 
 	template <typename T>
-	void addNumbers(typename T::iterator begin, typename T::iterator end) {
+	void addNumbers(typename T::iterator begin, typename T::iterator end) throw(CapacityLimitReachedException) {
 		if (std::distance(begin, end) > _max_size - _size)
 			throw Span::CapacityLimitReachedException();
 		while (begin != end)
