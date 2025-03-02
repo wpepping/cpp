@@ -55,10 +55,14 @@ int main()
 
 	std::list<int> int_list2;
 	int_list2.push_back(0);
-	int_list2.push_back(1);
+
+	sp2.addNumbers<std::list<int> >(int_list2.begin(), int_list2.end());
+
+	std::list<int> int_list3;
+	int_list3.push_back(1);
 
 	try {
-		sp2.addNumbers<std::list<int> >(int_list.begin(), int_list.end());
+		sp2.addNumbers<std::list<int> >(int_list3.begin(), int_list3.end());
 		std::cout << "ERROR: Adding more numbers than max size succeeded" << std::endl;
 	} catch (Span::CapacityLimitReachedException &e) {
 		std::cout << "Caught exception: " << e.what() << std::endl;
