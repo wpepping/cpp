@@ -31,8 +31,8 @@ int Span::shortestSpan() const throw(UnableToComplyException) {
 
 	if (_size < 2)
 		throw Span::UnableToComplyException();
-	for (unsigned int i = 0; i <= _size; i++) {
-		for (unsigned int j = 0; j <= _size; j++) {
+	for (unsigned int i = 0; i < _size; i++) {
+		for (unsigned int j = 0; j < _size; j++) {
 			if (i != j && abs(_data[i] - _data[j]) < min)
 				min = abs(_data[i] - _data[j]);
 		}

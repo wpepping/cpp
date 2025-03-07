@@ -8,10 +8,10 @@ CFLAGS = -Wall -Werror -Wextra -std=c++98
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(DEBUG_FLAGS) $(OBJS) -o $(NAME)
 
 %.obj: %.cpp $(HEADERS)
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -c -o $@ $<
 
 clean:
 	rm -f $(OBJS)
@@ -21,4 +21,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus clean fclean re debug
