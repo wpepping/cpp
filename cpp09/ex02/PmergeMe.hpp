@@ -7,9 +7,9 @@
 #include <utility>
 #include <vector>
 
-typedef intvec intvec;
-typedef intmap intmap;
-typedef std::pair<int, int> intpair;
+typedef std::vector<int> 		intvec;
+typedef std::multimap<int, int>	intmap;
+typedef std::pair<int, int> 	intpair;
 
 typedef struct s_pair {
 	int high;
@@ -31,8 +31,8 @@ private:
 		intvec &container
 	);
 	static void _insertSmallest(intvec &S, intmap &pairs, int *oddEnd);
-	static void fillY(intvec &y, intvec &S, intmap &pairs, int *oddEnd);
-	static void addItems(intvec &y, intvec &S, intmap &pairs, int *oddEnd, int group_size, int index);
+	static void _insertItems(intvec &S, intmap &pairs, int *oddEnd, int group_size, size_t index);
+	static void _binaryInsert(intvec &S, int item, size_t index);
 };
 
 #endif
