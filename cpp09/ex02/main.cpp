@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cstdlib>
 #include <iostream>
 #include <limits>
@@ -47,7 +48,9 @@ std::vector<int> convertInput(unsigned int argc, char *argv[]) {
 		if (argv[i] == str_end || l < std::numeric_limits<int>::min()
 			|| l > std::numeric_limits<int>::max())
 			throw ConversionFailedException();
-		result.push_back(static_cast<int>(l));
+		if (std::find(result.begin(), result.end(), l) != result.end())
+		throw ConversionFailedException();
+		result.push_back(l);
 	}
 	return result;
 }
@@ -60,7 +63,14 @@ int main(int argc, char *argv[]) {
 	} catch (ConversionFailedException &e) {
 		return err_handl("Incorrect arguments", 1);
 	}
+
 	std::cout << "Input: ";
 	printContainer(input);
 	std::cout << std::endl;
+
+	PmergeMe::sort(input);
+
+	// std::cout << "Output: ";
+	// printContainer(PmergeMe::sort(input));
+	// std::cout << std::endl;
 }

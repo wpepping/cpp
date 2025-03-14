@@ -19,7 +19,7 @@ typedef struct s_pair {
 
 class PmergeMe {
 public:
-	static void sort(intvec &container);
+	static std::vector<int> sort(std::vector<int> &container);
 
 private:
 	PmergeMe();
