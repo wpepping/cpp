@@ -1,8 +1,15 @@
 #ifndef __PMERGME_H__
 #define __PMERGME_H__
 
+#include <cmath>
+#include <cstddef>
+#include <map>
+#include <utility>
 #include <vector>
-#include <unordered_map>
+
+typedef intvec intvec;
+typedef intmap intmap;
+typedef std::pair<int, int> intpair;
 
 typedef struct s_pair {
 	int high;
@@ -12,18 +19,20 @@ typedef struct s_pair {
 
 class PmergeMe {
 public:
-	static void sort(std::vector<int> &container);
+	static void sort(intvec &container);
 
 private:
 	PmergeMe();
 	~PmergeMe();
 
 	static void _fillPairsAndInsertLargest(
-		std::vector<int> &S,
-		std::unordered_map<int, int> &pairs,
-		std::vector<int> &container
+		intvec &S,
+		intmap &pairs,
+		intvec &container
 	);
-	static void _insertSmallest(std::vector<int> &result, std::unordered_map<int, int> &pairs);
+	static void _insertSmallest(intvec &S, intmap &pairs, int *oddEnd);
+	static void fillY(intvec &y, intvec &S, intmap &pairs, int *oddEnd);
+	static void addItems(intvec &y, intvec &S, intmap &pairs, int *oddEnd, int group_size, int index);
 };
 
 #endif

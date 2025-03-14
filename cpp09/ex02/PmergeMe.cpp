@@ -4,51 +4,54 @@ PmergeMe::PmergeMe() {}
 PmergeMe::~PmergeMe() {}
 
 void PmergeMe::_fillPairsAndInsertLargest(
-	std::vector<int> &S,
-	std::unordered_map<int, int> &pairs,
-	std::vector<int> &container
+	intvec &S,
+	intmap &pairs,
+	intvec &container
 ) {
 	for (int i = 0; i < container.size() - 1; i += 2) {
 		if (container[i + 1] > container[i]) {
-			pairs[container[i + 1]] = container[i];
+			pairs.insert(intpair(container[i + 1], container[i]));
 			S.push_back(container[i + 1]);
 		} else {
-			pairs[container[i]] = container[i + 1];
+			pairs.insert(intpair(container[i], container[i + 1]));
 			S.push_back(container[i]);
 		}
 	}
 }
 
-void PmergeMe::_insertSmallest(std::vector<int> &S, std::unordered_map<int, int> &pairs) {
-	(void)S;
-	(void)pairs;
-	/*
-	    The sizes of groups are: 2, 2, 6, 10, 22, 42
-		Order the uninserted elements by their groups (smaller indexes to larger indexes),
-		but within each group order them from larger indexes to smaller indexes.
+void PmergeMe::addItems(intvec &y, intvec &S, intmap &pairs, int *oddEnd, int group_size, int index) {
 
-		First group (size 2) = y3, y4, ordered larger to smaller = y4, y3
-		Second group (size 2) = y5, y6, ordered larger to smaller = y6, y5
-		First group (size 6) = y7-y12, ordered larger to smaller =  y12 , y11 , y10 , y9 , y8 , y7
-		etc.
-
-		Thus, the ordering becomes
-
-		y4 , y3 , y6 , y5 , y12 , y11 , y10 , y9 , y8 , y7 , y22 , y21 ...
-
-		Use this ordering to insert the elements y_i. For each element y_i, use a binary search
-		from the start of S up to but not including x_i to determine where to insert y_i
-
-		Handle odd n by adding the unpaired element as y_(max+1) (obv S.size())
-	*/
 }
 
-void PmergeMe::sort(std::vector<int> &container) {
-	std::vector<int>				S;
-	std::unordered_map<int, int>	pairs;
+void PmergeMe::fillY(intvec &y, intvec &S, intmap &pairs, int *oddEnd) {
+	int index;
+	int group_size;
+	int power;
+
+	y.reserve(pairs.size() - 1 + (oddEnd? 1 : 0));
+	group_size = 0;
+	power = 1;
+	index = 2;
+	while (index + group_size < S.size()) {
+		group_size = std::pow(2, power) - group_size;
+		addItems(y, S, pairs, oddEnd, group_size, index);
+	}
+}
+
+void PmergeMe::_insertSmallest(intvec &S, intmap &pairs, int *oddEnd) {
+	(void)S;
+	(void)pairs;
+	intvec y;
+
+	fillY(y, S, pairs, oddEnd);
+}
+
+void PmergeMe::sort(intvec &container) {
+	intvec				S;
+	intmap	pairs;
 
 	_fillPairsAndInsertLargest(S, pairs, container);
 	sort(S);
-	S.insert(S.begin(), pairs[S[0]]);
-	_insertSmallest(S, pairs);
+	S.insert(S.begin(), (*pairs.find(S[0])).second);
+	_insertSmallest(S, pairs, (container.size() % 2 ? &container.back() : NULL));
 }
