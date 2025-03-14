@@ -8,7 +8,8 @@ void PmergeMe::sort(intvec &container) {
 	intmap	pairs;
 
 	_fillPairsAndInsertLargest(S, pairs, container);
-	sort(S);
+	if (pairs.size() > 1)
+		sort(S);
 	S.insert(S.begin(), (*pairs.find(S[0])).second);
 	_insertSmallest(S, pairs, (container.size() % 2 ? &container.back() : NULL));
 }
