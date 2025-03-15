@@ -1,6 +1,7 @@
 #ifndef __PMERGME_H__
 #define __PMERGME_H__
 
+#include <algorithm>
 #include <cmath>
 #include <cstddef>
 #include <map>

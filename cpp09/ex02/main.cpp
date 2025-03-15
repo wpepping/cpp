@@ -58,6 +58,9 @@ std::vector<int> convertInput(unsigned int argc, char *argv[]) {
 int main(int argc, char *argv[]) {
 	std::vector<int> input;
 
+	if (argc == 1)
+		return err_handl("Incorrect arguments", 1);
+
 	try {
 		input = convertInput(argc, argv);
 	} catch (ConversionFailedException &e) {
@@ -70,7 +73,7 @@ int main(int argc, char *argv[]) {
 
 	PmergeMe::sort(input);
 
-	// std::cout << "Output: ";
-	// printContainer(PmergeMe::sort(input));
-	// std::cout << std::endl;
+	std::cout << "Output: ";
+	printContainer(PmergeMe::sort(input));
+	std::cout << std::endl;
 }

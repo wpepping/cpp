@@ -23,7 +23,8 @@ std::vector<int> PmergeMe::sort(std::vector<int> &container) {
 	_fillPairsAndInsertLargest(S, pairs, container);
 	if (pairs.size() > 1)
 		S = sort(S);
-	S.insert(S.begin(), (*pairs.find(S[0])).second);
+	if (pairs.size() > 0)
+		S.insert(S.begin(), (*pairs.find(S[0])).second);
 	_insertSmallest(S, pairs, (container.size() % 2 ? &container.back() : NULL));
 
 	std::cout << "Sort output: ";
@@ -61,8 +62,8 @@ void PmergeMe::_insertSmallest(intvec &S, intmap &pairs, int *oddEnd) {
 
 	group_size = 0;
 	power = 1;
-	index = 2;
-	while (index < S.size()) {
+	index = std::min<std::size_t>(2, S.size());
+	while (index < S.size() + (oddEnd ? 1 : 0)) {
 		group_size = std::pow(2, power) - group_size;
 		std::cout << "Group size: " << group_size << std::endl;
 		_insertItems(S, pairs, oddEnd, group_size, index);
@@ -72,7 +73,7 @@ void PmergeMe::_insertSmallest(intvec &S, intmap &pairs, int *oddEnd) {
 }
 
 void PmergeMe::_insertItems(intvec &S, intmap &pairs, int *oddEnd, int group_size, size_t index) {
-	if (index + group_size >= S.size()) {
+	if (index + group_size > S.size()) {
 		if (oddEnd) {
 			_binaryInsert(S, *oddEnd, index);
 			index++;
@@ -99,12 +100,8 @@ void PmergeMe::_binaryInsert(intvec &S, int item, size_t index) {
 			max = i;
 		i = min + (max - min) / 2;
 	}
-	if (min == 0) {
-		if (item < S[0])
-			S.insert(S.begin(), item);
-		else
-			S.insert(S.begin() + 1, item);
-	}
+	if (min == 0)
+		S.insert(S.begin() + (!S.size() || item < S[0] ? 0 : 1), item);
 	else
 		S.insert(S.begin() + max, item);
 }
