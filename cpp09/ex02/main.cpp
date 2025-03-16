@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
 
 	PmergeMe::sort(input);
 
-	std::cout << "Output: ";
-	printContainer(PmergeMe::sort(input));
-	std::cout << std::endl;
+	// std::cout << "Output: ";
+	// printContainer(PmergeMe::sort(input));
+	// std::cout << std::endl;
 }

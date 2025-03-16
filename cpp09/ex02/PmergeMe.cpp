@@ -4,21 +4,21 @@ PmergeMe::PmergeMe() {}
 PmergeMe::~PmergeMe() {}
 
 #include <iostream>
-static void printContainer(const std::vector<int> &vec) {
+static void printContainer(std::string message, const std::vector<int> &vec) {
+	std::cout << message;
 	for (size_t i = 0; i < vec.size(); ++i) {
 		std::cout << vec[i];
 		if (i < vec.size() - 1)
 			std::cout << ' ';
 	}
+	std::cout << std::endl;
 }
 
 std::vector<int> PmergeMe::sort(std::vector<int> &container) {
 	intvec	S;
 	intmap	pairs;
 
-	std::cout << "Sort input: ";
-	printContainer(container);
-	std::cout << std::endl;
+	printContainer("Sort input: ", container);
 
 	_fillPairsAndInsertLargest(S, pairs, container);
 	if (pairs.size() > 1)
@@ -27,9 +27,7 @@ std::vector<int> PmergeMe::sort(std::vector<int> &container) {
 		S.insert(S.begin(), (*pairs.find(S[0])).second);
 	_insertSmallest(S, pairs, (container.size() % 2 ? &container.back() : NULL));
 
-	std::cout << "Sort output: ";
-	printContainer(S);
-	std::cout << std::endl;
+	printContainer("Sort output: ", S);
 
 	return S;
 }
@@ -56,9 +54,7 @@ void PmergeMe::_insertSmallest(intvec &S, intmap &pairs, int *oddEnd) {
 	int		group_size;
 	int		power;
 
-	std::cout << "Insert smallest - S = ";
-	printContainer(S);
-	std::cout << std::endl;
+	printContainer("Insert smallest - S = ", S);
 
 	group_size = 0;
 	power = 1;
@@ -73,24 +69,26 @@ void PmergeMe::_insertSmallest(intvec &S, intmap &pairs, int *oddEnd) {
 }
 
 void PmergeMe::_insertItems(intvec &S, intmap &pairs, int *oddEnd, int group_size, size_t index) {
+	int x_index;
+
 	if (index + group_size > S.size()) {
-		if (oddEnd) {
-			_binaryInsert(S, *oddEnd, index);
-			index++;
-		}
+		if (oddEnd)
+			_binaryInsert(S, *oddEnd, index++);
 		group_size = S.size() - index;
 	}
 	std::cout << "insert items, index=" << index << ", group_size=" << group_size << std::endl;
 	for (int i = 1; index + group_size - i >= index; i++) {
-		std::cout << "Insert y" << (index+group_size-i-i+2) << ", x=" << S[index + group_size - i] << ", y=" << pairs.find(S[index + group_size - i])->second 	<< std::endl;
-		_binaryInsert(S, pairs.find(S[index + group_size - i])->second, index);
+		x_index = index + group_size - i;
+		printContainer("S: ", S);
+		std::cout << "Insert y" << (x_index-i+2) << ", x=" << S[x_index] << ", y=" << pairs.find(S[x_index])->second 	<< std::endl;
+		_binaryInsert(S, pairs.find(S[x_index])->second, x_index);
 		index++;
 	}
 }
 
-void PmergeMe::_binaryInsert(intvec &S, int item, size_t index) {
+void PmergeMe::_binaryInsert(intvec &S, int item, size_t x_index) {
 	int	min = 0;
-	int max = index;
+	int max = x_index;
 	int i = (max - min) / 2;
 
 	while (max - min > 1) {
