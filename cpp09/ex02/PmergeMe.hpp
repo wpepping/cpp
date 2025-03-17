@@ -12,12 +12,6 @@ typedef std::vector<int> 		intvec;
 typedef std::multimap<int, int>	intmap;
 typedef std::pair<int, int> 	intpair;
 
-typedef struct s_pair {
-	int high;
-	int low;
-	int index;
-} t_pair;
-
 class PmergeMe {
 public:
 	static std::vector<int> sort(std::vector<int> &container);
@@ -32,7 +26,7 @@ private:
 		intvec &container
 	);
 	static void _insertSmallest(intvec &S, intmap &pairs, int *oddEnd);
-	static void _insertItems(intvec &S, intmap &pairs, int *oddEnd, int group_size, size_t index);
+	static void _insertItems(intvec &S, intmap &pairs, int *oddEnd, size_t group_size, size_t index);
 	static void _binaryInsert(intvec &S, int item, size_t index);
 };
 

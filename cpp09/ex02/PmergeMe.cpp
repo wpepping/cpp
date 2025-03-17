@@ -3,16 +3,18 @@
 PmergeMe::PmergeMe() {}
 PmergeMe::~PmergeMe() {}
 
-#include <iostream>
-static void printContainer(std::string message, const std::vector<int> &vec) {
-	std::cout << message;
-	for (size_t i = 0; i < vec.size(); ++i) {
-		std::cout << vec[i];
-		if (i < vec.size() - 1)
-			std::cout << ' ';
-	}
-	std::cout << std::endl;
-}
+ #include <iostream>
+ static void printContainer(std::string message, const std::vector<int> &vec) {
+ 	//std::cout << message;
+ 	for (size_t i = 0; i < vec.size(); ++i) {
+ 		//std::cout << vec[i];
+ 		if (i < vec.size() - 1) {
+			(void)message;
+ 			//std::cout << ' ';
+		}
+ 	}
+ 	//std::cout << std::endl;
+ }
 
 std::vector<int> PmergeMe::sort(std::vector<int> &container) {
 	intvec	S;
@@ -20,6 +22,8 @@ std::vector<int> PmergeMe::sort(std::vector<int> &container) {
 
 	printContainer("Sort input: ", container);
 
+	if (container.size() == 1)
+		return intvec(1, container[0]);
 	_fillPairsAndInsertLargest(S, pairs, container);
 	if (pairs.size() > 1)
 		S = sort(S);
@@ -38,7 +42,7 @@ void PmergeMe::_fillPairsAndInsertLargest(
 	intvec &container
 ) {
 	for (size_t i = 0; i < container.size() - 1; i += 2) {
-		std::cout << "pair: " << container[i] << "," << container[i + 1] << std::endl;
+		//std::cout << "pair: " << container[i] << "," << container[i + 1] << std::endl;
 		if (container[i + 1] > container[i]) {
 			pairs.insert(intpair(container[i + 1], container[i]));
 			S.push_back(container[i + 1]);
@@ -51,7 +55,7 @@ void PmergeMe::_fillPairsAndInsertLargest(
 
 void PmergeMe::_insertSmallest(intvec &S, intmap &pairs, int *oddEnd) {
 	size_t	index;
-	int		group_size;
+	size_t	group_size;
 	int		power;
 
 	printContainer("Insert smallest - S = ", S);
@@ -61,45 +65,48 @@ void PmergeMe::_insertSmallest(intvec &S, intmap &pairs, int *oddEnd) {
 	index = std::min<std::size_t>(2, S.size());
 	while (index < S.size() + (oddEnd ? 1 : 0)) {
 		group_size = std::pow(2, power) - group_size;
-		std::cout << "Group size: " << group_size << std::endl;
+		//std::cout << "Group size: " << group_size << std::endl;
 		_insertItems(S, pairs, oddEnd, group_size, index);
 		index += group_size * 2;
 		power++;
 	}
 }
 
-void PmergeMe::_insertItems(intvec &S, intmap &pairs, int *oddEnd, int group_size, size_t index) {
-	int x_index;
+void PmergeMe::_insertItems(intvec &S, intmap &pairs, int *oddEnd, size_t group_size, size_t index) {
+	size_t 	upper_bound;
+	size_t	last_element = std::min(index + group_size, S.size());
+	intvec	elements(&S[index], &S[last_element]);
 
 	if (index + group_size > S.size()) {
 		if (oddEnd)
-			_binaryInsert(S, *oddEnd, index++);
-		group_size = S.size() - index;
+			_binaryInsert(S, *oddEnd, S.size() - 1);
+		group_size = elements.size();
+		if (group_size == 0)
+			return;
 	}
-	std::cout << "insert items, index=" << index << ", group_size=" << group_size << std::endl;
-	for (int i = 1; index + group_size - i >= index; i++) {
-		x_index = index + group_size - i;
+
+	//std::cout << "insert items, index=" << index << ", group_size=" << group_size << std::endl;
+
+	upper_bound = index + group_size - 1;
+	//std::cout << "upper_bound: " << upper_bound << std::endl;
+	for (size_t i = 1; i <= group_size; i++) {
 		printContainer("S: ", S);
-		std::cout << "Insert y" << (x_index-i+2) << ", x=" << S[x_index] << ", y=" << pairs.find(S[x_index])->second 	<< std::endl;
-		_binaryInsert(S, pairs.find(S[x_index])->second, x_index);
-		index++;
+		//std::cout << "Insert y" << (upper_bound-i+2) << ", x=" << elements[group_size - i] << ", y=" << pairs.find(elements[group_size - i])->second 	<< std::endl;
+		_binaryInsert(S, pairs.find(elements[group_size - i])->second, upper_bound);
 	}
 }
 
-void PmergeMe::_binaryInsert(intvec &S, int item, size_t x_index) {
+void PmergeMe::_binaryInsert(intvec &S, int item, size_t upper_bound) {
 	int	min = 0;
-	int max = x_index;
-	int i = (max - min) / 2;
+	int max = upper_bound;
+	int i;
 
-	while (max - min > 1) {
-		if (item > S[i])
-			min = i;
-		else
-			max = i;
+	while (min < max) {
 		i = min + (max - min) / 2;
+		if (item > S[i])
+			min = i + 1;
+		else
+			max = i - 1;
 	}
-	if (min == 0)
-		S.insert(S.begin() + (!S.size() || item < S[0] ? 0 : 1), item);
-	else
-		S.insert(S.begin() + max, item);
+	S.insert(S.begin() + max + (S.size() && item > S[max] ? 1 : 0), item);
 }
