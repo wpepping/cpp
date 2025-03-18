@@ -138,7 +138,12 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	BitcoinExchange exchange(DATABASE_FILE);
-	std::cout << exchange.size() << " prices read." << std::endl;
-	processFile(exchange, argv[1]);
+	try {
+		BitcoinExchange exchange(DATABASE_FILE);
+		std::cout << exchange.size() << " prices read." << std::endl;
+		processFile(exchange, argv[1]);
+	} catch (BitcoinExchange::ErrorReadingFileException &e) {
+		std::cout << "Error: Error reading database." << std::endl;
+		return 1;
+	}
 }

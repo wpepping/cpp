@@ -66,7 +66,7 @@ time_t BitcoinExchange::Utils::_getDate(int year, int month, int day) {
 
 BitcoinExchange::BitcoinExchange() { }
 
-BitcoinExchange::BitcoinExchange(std::string fname) {
+BitcoinExchange::BitcoinExchange(std::string fname) throw(ErrorReadingFileException) {
 	_initDb(fname);
 }
 

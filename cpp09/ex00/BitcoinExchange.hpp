@@ -1,3 +1,6 @@
+#ifndef __BITCOINEXCHANGE_H__
+#define __BITCOINEXCHANGE_H__
+
 #include <ctime>
 #include <exception>
 #include <fstream>
@@ -37,7 +40,7 @@ public:
 	};
 
 	BitcoinExchange();
-	BitcoinExchange(std::string fname);
+	BitcoinExchange(std::string fname) throw(ErrorReadingFileException);
 	BitcoinExchange(BitcoinExchange const &src);
 	~BitcoinExchange();
 	BitcoinExchange &operator=(BitcoinExchange const &src);
@@ -51,3 +54,5 @@ private:
 	void _initDb(const std::string &fname) throw(ErrorReadingFileException);
 	void _parseLine(std::ifstream &infile) throw(ErrorReadingFileException);
 };
+
+#endif
