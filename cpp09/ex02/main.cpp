@@ -16,11 +16,12 @@ int err_handl(std::string message, int error_code) {
 	return error_code;
 }
 
-void printContainer(const std::vector<int> &vec) {
-	for (size_t i = 0; i < vec.size(); ++i) {
-		std::cout << vec[i];
-		if (i < vec.size() - 1)
+template <typename T>
+void printContainer(const T &container) {
+	for (typename T::const_iterator it = container.begin(); it != container.end(); ++it) {
+		if (it != container.begin())
 			std::cout << ' ';
+		std::cout << *it;
 	}
 }
 
@@ -56,7 +57,8 @@ std::vector<int> convertInput(unsigned int argc, char *argv[]) {
 }
 
 int main(int argc, char *argv[]) {
-	std::vector<int> input;
+	std::vector<int>	input;
+	std::list<int>		list_input;
 
 	if (argc == 1)
 		return err_handl("Incorrect arguments", 1);
@@ -71,9 +73,18 @@ int main(int argc, char *argv[]) {
 	printContainer(input);
 	std::cout << std::endl;
 
-	PmergeMe::sort(input);
+	std::cout << "Output: ";
+	printContainer(PmergeMe::VectorSort::sort(input));
+	std::cout << std::endl;
+
+	list_input = std::list<int>(input.begin(), input.end());
+
+	std::cout << "Input: ";
+	printContainer(list_input);
+	std::cout << std::endl;
 
 	std::cout << "Output: ";
-	printContainer(PmergeMe::sort(input));
+	printContainer(PmergeMe::ListSort::sort(list_input));
 	std::cout << std::endl;
+
 }
