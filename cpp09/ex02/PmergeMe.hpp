@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
+#include <list>
 #include <map>
 #include <utility>
 #include <vector>
@@ -14,20 +15,49 @@ typedef std::pair<int, int> 	intpair;
 
 class PmergeMe {
 public:
-	static std::vector<int> sort(std::vector<int> &container);
+	class VectorSort {
+	public:
+		static std::vector<int> sort(std::vector<int> &container);
+
+	private:
+		VectorSort();
+		~VectorSort();
+
+		typedef std::vector<int> intvec;
+
+		static void _fillPairsAndInsertLargest(
+			intvec &S,
+			intmap &pairs,
+			intvec &container
+		);
+		static void _insertSmallest(intvec &S, intmap &pairs, int *oddEnd);
+		static void _insertItems(intvec &S, intmap &pairs, int *oddEnd, size_t group_size, size_t index);
+		static void _binaryInsert(intvec &S, int item, size_t upperBound);
+	};
+
+	class ListSort {
+	public:
+		static std::list<int> sort(std::list<int> &container);
+
+	private:
+		ListSort();
+		~ListSort();
+
+		typedef std::list<int> intlist;
+
+		static void _fillPairsAndInsertLargest(
+			intlist &S,
+			intmap &pairs,
+			intlist &container
+		);
+		static void _insertSmallest(intlist &S, intmap &pairs, int *oddEnd);
+		static void _insertItems(intlist &S, intmap &pairs, int *oddEnd, size_t group_size, size_t index);
+		static void _binaryInsert(intlist &S, int item, size_t upperBound);
+	};
 
 private:
 	PmergeMe();
 	~PmergeMe();
-
-	static void _fillPairsAndInsertLargest(
-		intvec &S,
-		intmap &pairs,
-		intvec &container
-	);
-	static void _insertSmallest(intvec &S, intmap &pairs, int *oddEnd);
-	static void _insertItems(intvec &S, intmap &pairs, int *oddEnd, size_t group_size, size_t index);
-	static void _binaryInsert(intvec &S, int item, size_t index);
 };
 
 #endif
