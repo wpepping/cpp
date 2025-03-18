@@ -103,7 +103,6 @@ std::list<int> PmergeMe::ListSort::sort(std::list<int> &container) {
 	if (pairs.size() > 0)
 		S.insert(S.begin(), (*pairs.find(S.front())).second);
 	_insertSmallest(S, pairs, (container.size() % 2 ? &container.back() : NULL));
-
 	return S;
 }
 
@@ -156,7 +155,7 @@ void PmergeMe::ListSort::_insertItems(intlist &S, intmap &pairs, int *oddEnd, si
 	intlist::iterator	end = S.begin();
 
 	advance(start, index);
-	advance(end, last_element + 1);
+	advance(end, last_element);
 
 	intvec	elements(start, end);
 
