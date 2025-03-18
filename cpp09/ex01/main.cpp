@@ -12,5 +12,7 @@ int main(int argc, char *argv[]) {
 		std::cout << "Error" << std::endl;
 	} catch (RPN::DivisionByZeroException &e) {
 		std::cout << "Division by zero" << std::endl;
+	} catch (RPN::IntegerOverflowException &e) {
+		std::cout << "Integer overflow" << std::endl;
 	}
 }

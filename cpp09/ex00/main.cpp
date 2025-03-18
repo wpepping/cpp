@@ -59,7 +59,7 @@ void printLine(const BitcoinExchange exchange, const time_t &date, const double 
 		value = coins * exchange.getBitcoinPrice(date);
 		std::cout << date_string << " => " << coins << " => " << value << std::endl;
 	} catch (BitcoinExchange::PriceNotFoundException &e) {
-		std::cout << e.what() << std::endl;
+		std::cout << "Error: " << e.what() << std::endl;
 	}
 }
 

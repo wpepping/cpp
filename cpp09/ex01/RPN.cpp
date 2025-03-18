@@ -4,7 +4,12 @@
 RPN::RPN() { }
 RPN::~RPN() { }
 
-int RPN::parse(const std::string &expression) throw(InvalidExpressionException, DivisionByZeroException) {
+int RPN::parse(const std::string &expression)
+	throw(
+		InvalidExpressionException,
+		DivisionByZeroException,
+		IntegerOverflowException
+	) {
 	int							result;
 	char						curr;
 	std::stack<char>			stack;
@@ -28,10 +33,16 @@ int RPN::parse(const std::string &expression) throw(InvalidExpressionException, 
 	return result;
 }
 
-int RPN::_calculate(std::stack<char> &stack) throw(InvalidExpressionException, DivisionByZeroException) {
+int RPN::_calculate(std::stack<char> &stack)
+	throw(
+		InvalidExpressionException,
+		DivisionByZeroException,
+		IntegerOverflowException
+	) {
 	char	op;
 	int		lhs;
 	int		rhs;
+	long	result;
 
 	if (stack.empty())
 		throw InvalidExpressionException();
@@ -44,17 +55,22 @@ int RPN::_calculate(std::stack<char> &stack) throw(InvalidExpressionException, D
 	if (stack.empty())
 		throw InvalidExpressionException();
 	lhs = _calculate(stack);
-	return _calc_operator(lhs, rhs, op);
+	result = _calc_operator(lhs, rhs, op);
+	if (result > std::numeric_limits<int>::max()
+		|| result < std::numeric_limits<int>::min())
+		throw IntegerOverflowException();
+	return result;
 }
 
-int	RPN::_calc_operator(int lhs, int rhs, char op) throw(DivisionByZeroException) {
+long RPN::_calc_operator(int lhs, int rhs, char op)
+	throw(DivisionByZeroException, IntegerOverflowException) {
 	switch (op) {
 		case '+':
-			return lhs + rhs;
+			return static_cast<long>(lhs) + rhs;
 		case '-':
 			return lhs - rhs;
 		case '*':
-			return lhs * rhs;
+			return static_cast<long>(lhs) * rhs;
 		case '/':
 			if (rhs == 0)
 				throw DivisionByZeroException();
@@ -77,4 +93,8 @@ const char* RPN::InvalidExpressionException::what() const throw() {
 
 const char* RPN::DivisionByZeroException::what() const throw() {
 	return "division by zero";
+}
+
+const char* RPN::IntegerOverflowException::what() const throw() {
+	return "integer overflow";
 }
